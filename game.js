@@ -19,6 +19,8 @@ const winPattern=[
 boxes.forEach((box)=>{
 box.addEventListener("click",()=>{
     // console.log("clicked!");
+    if (box.innerText !== "") return;
+    
     if(turnO){
         box.innerText="O";
         turnO=false;
@@ -48,9 +50,7 @@ const checkWinner=()=>{
      let isDraw = [...boxes].every((box) => box.innerText !== "");
 
     if (isDraw) {
-        winningMsg.innerText = "Game Draw!";
-        msgContainer.classList.remove("hide");
-        disable();
+        showDraw();
     }
 };
 
@@ -58,6 +58,12 @@ const showWinner=(winner)=>{
     winningMsg.innerText=`Congraculation,Winner is ${winner}`;
 msgContainer.classList.remove("hide");
 disable();
+};
+
+const showDraw = () => {
+    winningMsg.innerText = "Game Draw!";
+    msgContainer.classList.remove("hide");
+    disable();
 };
 
 const disable=()=>{
@@ -76,6 +82,7 @@ const enable=()=>{
 const resetGame=()=>{
 turnO=true;
 enable();
+ winningMsg.innerText = "";    
 msgContainer.classList.add("hide");
 };
 
