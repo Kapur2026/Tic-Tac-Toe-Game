@@ -41,8 +41,16 @@ const checkWinner=()=>{
             if(post0val===post1val && post1val===post2val){
                 // console.log(" Congraculation,winner is:",post0val);
                 showWinner(post0val);
+                return;
             }
         }
+    }
+     let isDraw = [...boxes].every((box) => box.innerText !== "");
+
+    if (isDraw) {
+        winningMsg.innerText = "Game Draw!";
+        msgContainer.classList.remove("hide");
+        disable();
     }
 };
 
